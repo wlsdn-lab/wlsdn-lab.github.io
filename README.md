@@ -25,6 +25,7 @@ Locky study report
 이를 인피니티프리에 업로드 편하게 하나의 폴더로 만들어줘 
   ```
 - 화면 캡처 (URL 표시줄은 가리기)
+<img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/114fd36b-2ce2-413e-a82c-5662fadc9be4" />
 
 ## 2. 배포하면서 막힌 점
 - 문제 → 해결:
