@@ -46,10 +46,12 @@ Locky study report
 ### 4-1. Stored XSS — 댓글 출력
 - 문제: 댓글 내용을 이스케이프 없이 그대로 출력 → 저장된 <script>가 다른 사용자 브라우저에서 실행됨 (Stored XSS)
 - Before
-  ```php   <div class="comment-body"><?= nl2br($c["content"]) ?></div>
+  ```php
+  <div class="comment-body"><?= nl2br($c["content"]) ?></div>
   ```
 - After
-  ```php   <div class="comment-body"><?= nl2br(h($c["content"])) ?></div>
+  ```php
+  <div class="comment-body"><?= nl2br(h($c["content"])) ?></div>
   ```
 - 확인: 댓글에 <b>test</b> 입력 시 — 패치 전엔 test(굵게), 패치 후엔 <b>test</b> 글자 그대로 표시. <script>alert(1)</script>도 실행 안 됨.
 
