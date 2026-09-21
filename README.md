@@ -25,7 +25,7 @@ Locky study report
   이를 인피니티프리에 업로드 편하게 하나의 폴더로 만들어줘 
   ```
 - 화면 캡처 (URL 표시줄은 가리기)
-<img src="1.png" width="60%" alt="설명">
+<img src="1.png" width="80%" alt="설명">
 
 
 ## 2. 배포하면서 막힌 점
