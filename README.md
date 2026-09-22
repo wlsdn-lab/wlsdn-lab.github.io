@@ -6,8 +6,8 @@ Locky study report
 > 본 글은 보안 스터디 교육 목적으로, **본인이 만든 사이트**에서만 점검·수정한 기록입니다.
 
 ## TL;DR
-- ○○ AI로 PHP+MySQL (로그인/게시판/업로드) 사이트를 만들어 무료 호스팅에 배포했다.
-- 보안 점검 5대 관점으로 스스로 훑어 N개를 찾았고, 그중 3개를 패치했다.
+- claude AI로 PHP+MySQL (로그인/게시판/업로드) 사이트를 만들어 무료 호스팅에 배포했다.
+- 보안 점검 5대 관점으로 스스로 훑어 3개를 찾았고, 그중 1개를 패치했다.
 - 느낀 점 한 줄:
 
 ## 1. 무엇을 만들었나
@@ -55,20 +55,40 @@ Locky study report
   ```php
   <div class="comment-body"><?= nl2br(h($c["content"])) ?></div>
   ```
-- 확인: 댓글에 '<b>test</b>' 입력 시 — 패치 전엔 test(굵게), 패치 후엔 '<b>test</b>' 글자 그대로 표시. '<script>alert(1)''</script>'도 실행 안 됨.
+- 확인: 댓글에 <b>test</b>' 입력 시 — 패치 전엔 test(굵게), 패치 후엔 '<b>test</b>' 글자 그대로 표시. '<script>alert(1)''</script>'도 실행 안 됨.
 
-### 4-2.
-### 4-3.
+### 4-2. SQL Injection — 게시판 검색 (board.php) [미패치 · 공방전용]
+- 문제: 검색어를 쿼리에 문자열로 직접 결합 + SQL 에러 원문 노출
+- Before
+  ```php
+  $sql = "SELECT ... WHERE p.title LIKE '%$q%' ORDER BY p.id DESC";
+  $res = mysqli_query($conn, $sql);
+  if (!$res) { $err = mysqli_error($conn); }
+​  ```
+- After: 처음부터 패치가 너무 많이 되어서 부득이하게 공방전을 위해서 미패치 상태로 두었습니다. S4에서 수정하겠습니다!
+  
+### 4-3. CSRF — 상태변경 요청에 토큰 없음 [미패치 · 공방전용]
+- 문제: 요청이 우리 폼에서 온 건지 검증하지 않음 → 외부 페이지가 로그인된 피해자 대신 댓글 작성·삭제를 유발 가능
+- Before
+  ```php
+  <form class="comment-form" action="post.php" method="post">
+  <input type="hidden" name="action" value="add_comment">
+  <input type="hidden" name="post_id" value="...">
+  <textarea name="content"></textarea>
+  <button type="submit">post comment</button>
+  </form>
+​  ```
+
+- After: 이것도 공방전을 위해서 s4에서 패치 하겠습니다 죄송합니다.
 
 ## 5. AI가 짠 코드에서 느낀 점
-- AI가 기본으로 놓친 것 / 잘한 것:
-- 다음에 AI에게 요청할 때 바꿀 점:
+- AI가 기본으로 놓친 것: 공방전 학습용 이라고 말을 했지만, 거의 모든 것을 다 막아놓은 것이 아쉬웠습니다. 제가 다시 한번 말을 해야지 학습용으로 취약점을 남겨두었었습니다. 그 점이 조금 아쉬웠습니다.
+- 잘한 것: 순식간에 php와 mysql 전부다 엄청나게 높은 퀄리티로 오류 없이 원하는 대로 구현 해줘서 놀랐습니다.
+- 다음에 AI에게 요청할 때 바꿀 점: 내가 원하는 것을 명확하게 이해 가능하게 질문 자체를 세세하게 해야겠다는 생각이 들었습니다.
 
 ## 6. 다음 주
 - 공방전 1차(공격) — 남의 사이트에서 무엇을 찾아볼지
 
 
-| A | B |
-| --- | --- |
-| 1 | 2 |
+
 
