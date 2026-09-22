@@ -45,7 +45,7 @@ Locky study report
 
 ## 4. 패치 기록 (3개)
 ### 4-1. Stored XSS — 댓글 출력
-- 문제: 댓글 내용을 이스케이프 없이 그대로 출력 → 저장된 <script>가 다른 사용자 브라우저에서 실행됨 (Stored XSS)
+- 문제: 댓글 내용을 이스케이프 없이 그대로 출력 → 저장된 '<script>'가 다른 사용자 브라우저에서 실행됨 (Stored XSS)
 - Before
   ```php
   <div class="comment-body"><?= nl2br($c["content"]) ?></div>
