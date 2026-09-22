@@ -55,7 +55,14 @@ Locky study report
   ```php
   <div class="comment-body"><?= nl2br(h($c["content"])) ?></div>
   ```
-- 확인: 댓글에 '<b>test</b>' 입력 시 — 패치 전엔 test(굵게), 패치 후엔 '<b>test</b>' 글자 그대로 표시. '<script>alert(1)''</script>'도 실행 안 됨.
+- 확인: 패치 전엔 굵게 표시되고 alert(1) 실행됨, 패치 후엔 글자 그대로 표시되고 실행 안 됨.
+
+```html
+<b>test</b>
+<script>alert(1)</script>​
+```
+
+패치 전엔 굵게 표시되고 alert(1) 실행됨, 패치 후엔 글자 그대로 표시되고 실행 안 됨.
 
 ### 4-2. SQL Injection — 게시판 검색 (board.php) [미패치 · 공방전용]
 - 문제: 검색어를 쿼리에 문자열로 직접 결합 + SQL 에러 원문 노출
