@@ -54,7 +54,7 @@ Locky study report
   ```php
   <div class="comment-body"><?= nl2br(h($c["content"])) ?></div>
   ```
-- 확인: 댓글에 '<b>test</b>' 입력 시 — 패치 전엔 test(굵게), 패치 후엔 <b>test</b> 글자 그대로 표시. '<script>alert(1)</script>'도 실행 안 됨.
+- 확인: 댓글에 '<b>test</b>' 입력 시 — 패치 전엔 test(굵게), 패치 후엔 <b>test</b> 글자 그대로 표시. '<script>alert(1)''</script>'도 실행 안 됨.
 
 ### 4-2.
 ### 4-3.
