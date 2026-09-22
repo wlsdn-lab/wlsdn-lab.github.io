@@ -37,7 +37,7 @@ Locky study report
 |---|---|---|---|
 | 1 | 입력검증 (SQLi/XSS) | 취약(SQLi·Stored XSS 발견) | XSS만 패치 완료 / SQLi 미패치 |
 | 2 | 인증/세션 | 안전함 | 패치 안함 |
-| 3 | 접근제어 | 대체로 안전/관리자 삭제 기능이 GET 방식이라 URL 직접 호출로 실행되어 CSRF와 결합 시 위험 |미패 |
+| 3 | 접근제어 | 대체로 안전/관리자 삭제 기능이 GET 방식이라 URL 직접 호출로 실행되어 CSRF와 결합 시 위험 | 미패치 |
 | 4 | 파일업로드 | 안전 | 패치 안함 |
 | 5 | 설정/노출 | SQL 에러 노출 | 미패치 |
 
@@ -54,7 +54,7 @@ Locky study report
   ```php
   <div class="comment-body"><?= nl2br(h($c["content"])) ?></div>
   ```
-- 확인: 댓글에 '<b>test</b>' 입력 시 — 패치 전엔 test(굵게), 패치 후엔 <b>test</b> 글자 그대로 표시. '<script>alert(1)''</script>'도 실행 안 됨.
+- 확인: 댓글에 '<b>test</b>' 입력 시 — 패치 전엔 test(굵게), 패치 후엔 '<b>test</b>' 글자 그대로 표시. '<script>alert(1)''</script>'도 실행 안 됨.
 
 ### 4-2.
 ### 4-3.
