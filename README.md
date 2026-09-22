@@ -70,14 +70,15 @@ Locky study report
 ### 4-3. CSRF — 상태변경 요청에 토큰 없음 [미패치 · 공방전용]
 - 문제: 요청이 우리 폼에서 온 건지 검증하지 않음 → 외부 페이지가 로그인된 피해자 대신 댓글 작성·삭제를 유발 가능
 - Before
-  ```php
-  <form class="comment-form" action="post.php" method="post">
+  
+```php
+<form class="comment-form" action="post.php" method="post">
   <input type="hidden" name="action" value="add_comment">
   <input type="hidden" name="post_id" value="...">
   <textarea name="content"></textarea>
   <button type="submit">post comment</button>
-  </form>
-​  ```
+</form>
+```
 
 - After: 이것도 공방전을 위해서 s4에서 패치 하겠습니다 죄송합니다.
 
