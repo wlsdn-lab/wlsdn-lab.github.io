@@ -130,7 +130,9 @@ Locky study report
 7'
 ​```
 
-- 증거: (id=7 정상 응답 / id=7' 500 에러 응답 스크린샷 첨부)
+- 증거: <img width="2880" height="1800" alt="Screenshot 2026-09-29 165400" src="https://github.com/user-attachments/assets/7d3e1946-d7ef-4154-b3ed-a1505b0a324a" /> <img width="2880" height="1800" alt="Screenshot 2026-09-29 171049" src="https://github.com/user-attachments/assets/324a0f3a-1706-4488-a764-34e071b6e01d" />
+
+
 - 영향 & 권고:
   - 영향: SQL 구문 조작 가능 → 추가 분석 시 DB 데이터(계정·상품 등) 탈취로 이어질 수 있음
   - 권고: Prepared Statement(파라미터 바인딩)로 전환, id는 정수형으로 강제 캐스팅, SQL 에러 화면 노출 금지
@@ -149,7 +151,8 @@ Locky study report
 <script>alert(1)</script>
 ​```
 
-- 증거: (스크립트 실행 경고창 화면 스크린샷 첨부)
+- 증거: <img width="2880" height="1800" alt="Screenshot 2026-09-29 171254" src="https://github.com/user-attachments/assets/08e5deed-29b3-42d3-a24a-1ee626f48c2e" />
+
 - 영향 & 권고:
   - 영향: 세션 쿠키 탈취(`document.cookie`), 피해자 계정 도용, 악성 스크립트 배포
   - 권고: 모든 사용자 입력 출력 시 htmlspecialchars 적용, 입력값 검증
