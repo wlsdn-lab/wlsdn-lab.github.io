@@ -130,7 +130,7 @@ Locky study report
 7'
 ​```
 
-- 증거: <img width="2880" height="1800" alt="Screenshot 2026-09-29 165400" src="https://github.com/user-attachments/assets/7d3e1946-d7ef-4154-b3ed-a1505b0a324a" /> <img width="2880" height="1800" alt="Screenshot 2026-09-29 171049" src="https://github.com/user-attachments/assets/324a0f3a-1706-4488-a764-34e071b6e01d" />
+- 증거: <img width="80" height="1800" alt="Screenshot 2026-09-29 165400" src="https://github.com/user-attachments/assets/7d3e1946-d7ef-4154-b3ed-a1505b0a324a" /> <img width="2880" height="1800" alt="Screenshot 2026-09-29 171049" src="https://github.com/user-attachments/assets/324a0f3a-1706-4488-a764-34e071b6e01d" />
 
 
 - 영향 & 권고:
@@ -151,7 +151,7 @@ Locky study report
 <script>alert(1)</script>
 ​```
 
-- 증거: <img width="2880" height="1800" alt="Screenshot 2026-09-29 171254" src="https://github.com/user-attachments/assets/08e5deed-29b3-42d3-a24a-1ee626f48c2e" />
+- 증거: <img width="80" height="1800" alt="Screenshot 2026-09-29 171254" src="https://github.com/user-attachments/assets/08e5deed-29b3-42d3-a24a-1ee626f48c2e" />
 
 - 영향 & 권고:
   - 영향: 세션 쿠키 탈취(`document.cookie`), 피해자 계정 도용, 악성 스크립트 배포
@@ -206,8 +206,8 @@ Locky study report
 ' UNION SELECT 1,username,3,4,password,6 FROM users-- -
 ​```
 
-- 증거: <img width="2880" height="1800" alt="Screenshot 2026-09-29 152620" src="https://github.com/user-attachments/assets/345c8291-97cc-4f87-ad51-5689b33130ba" />
- <img width="2880" height="1800" alt="Screenshot 2026-09-29 153457" src="https://github.com/user-attachments/assets/3b9e9162-fbcc-4113-befc-b6cde4e16106" />
+- 증거: <img width="80" height="1800" alt="Screenshot 2026-09-29 152620" src="https://github.com/user-attachments/assets/345c8291-97cc-4f87-ad51-5689b33130ba" />
+ <img width="80" height="1800" alt="Screenshot 2026-09-29 153457" src="https://github.com/user-attachments/assets/3b9e9162-fbcc-4113-befc-b6cde4e16106" />
 
 
 - 영향 & 권고:
@@ -229,7 +229,7 @@ Locky study report
 <script>alert(document.cookie)</script>
 ​```
 
-- 증거: <img width="2880" height="1800" alt="Screenshot 2026-09-29 162756" src="https://github.com/user-attachments/assets/18b7c20d-1f56-4e1d-ada6-16ad70d5ef17" />
+- 증거: <img width="80" height="1800" alt="Screenshot 2026-09-29 162756" src="https://github.com/user-attachments/assets/18b7c20d-1f56-4e1d-ada6-16ad70d5ef17" />
 
 - 영향 & 권고:
   - 영향: 세션 쿠키 탈취, 피해자 계정 도용
