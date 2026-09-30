@@ -173,3 +173,81 @@ Locky study report
 
 
 
+# 취약점 진단 보고서 — 대상: fakesangjun.xo.je (자체 진단)
+
+> 본 진단은 본인이 제작한 사이트를 대상으로, Burp Suite를 이용해 직접 수행한 자가 점검 기록입니다.
+
+## 1. 점검 요약 (5대 관점 판정표)
+
+| 관점 | 판정 | 심각도 |
+| --- | --- | --- |
+| SQLi | 취약 | High |
+| XSS | 취약 (패치 완료) | Medium |
+| IDOR/접근제어 | 안전 | - |
+| 인증우회 | 안전 | - |
+| 업로드/설정 | 해당없음 / 정보노출 있음 | - |
+
+## 2. 취약 항목 상세<img width="2880" height="1800" alt="Screenshot 2026-09-29 152620" src="https://github.com/user-attachments/assets/99e71a43-4f6f-442b-b0fb-e2f6fba6d87e" />
+
+
+### [High] 게시판 검색 SQL Injection
+
+- 위치: `board.php` 의 `q` 파라미터 (GET)
+- 요약: 검색어가 쿼리에 직접 결합되어, 로그인 없이 전체 회원의 아이디와 비밀번호 해시를 탈취할 수 있음
+- 재현 절차:
+  1. `board.php?q=hello` 정상 검색 (결과 0건)
+  2. `q` 값에 `'` 입력 → SQL 에러 발생 (주입 가능 확인)
+  3. `q` 값에 `' OR '1'='1` 입력 → 조건 무력화, 전체 글 노출
+  4. `q` 값에 UNION 페이로드 입력 → 회원 아이디·비밀번호 해시 유출
+- 사용 페이로드:
+
+​```sql
+' OR '1'='1
+' UNION SELECT 1,username,3,4,password,6 FROM users-- -
+​```
+
+- 증거: <img width="2880" height="1800" alt="Screenshot 2026-09-29 152620" src="https://github.com/user-attachments/assets/345c8291-97cc-4f87-ad51-5689b33130ba" />
+ <img width="2880" height="1800" alt="Screenshot 2026-09-29 153457" src="https://github.com/user-attachments/assets/3b9e9162-fbcc-4113-befc-b6cde4e16106" />
+
+
+- 영향 & 권고:
+  - 영향: 전체 회원 계정(아이디 + bcrypt 해시) 유출 → 해시 크래킹 시 계정 탈취 가능
+  - 권고: Prepared Statement(파라미터 바인딩) 전환, SQL 에러 메시지 화면 노출 금지
+
+### [Medium] 댓글 저장형 XSS (패치 완료)
+
+- 위치: 게시글 댓글 (`post.php` 댓글 출력)
+- 요약: 댓글이 이스케이프 없이 출력되어 저장된 스크립트가 열람자 브라우저에서 실행됨
+- 재현 절차:
+  1. 댓글에 `<b>test</b>` 입력 → 굵게 렌더링 (HTML 실행 확인)
+  2. `<script>alert(1)</script>` 입력 → 해당 글 열람 시 경고창 실행 (저장형 확인)
+  3. `h()`(htmlspecialchars) 적용 후 → 글자 그대로 표시, 실행 안 됨
+- 사용 페이로드:
+
+​```html
+<b>test</b>
+<script>alert(document.cookie)</script>
+​```
+
+- 증거: <img width="2880" height="1800" alt="Screenshot 2026-09-29 162756" src="https://github.com/user-attachments/assets/18b7c20d-1f56-4e1d-ada6-16ad70d5ef17" />
+
+- 영향 & 권고:
+  - 영향: 세션 쿠키 탈취, 피해자 계정 도용
+  - 권고: 모든 사용자 입력 출력 시 htmlspecialchars 적용 (적용 완료)
+
+
+## 3. 참고 — 안전하다고 판정한 항목
+
+- IDOR/접근제어: 프로필·글은 공개지만 수정·삭제는 소유권 검사가 있어 타인 데이터 변경 불가
+- 인증우회: `/admin`, `/mypage` 는 로그인·관리자 권한 검사가 정상 동작
+- 업로드: 파일 업로드 기능 자체가 없어 해당 없음
+
+## 4. 종합 의견
+
+- SQL Injection(High)이 가장 위험하며, 로그인 없이 전체 계정 정보 탈취가 가능해 최우선 조치 대상
+- Stored XSS(Medium)는 패치 완료했으나, CSRF는 공방전 진행을 위해 의도적으로 미패치 상태 유지 (S4에서 패치 예정)
+- 공통 원인: 사용자 입력에 대한 파라미터 바인딩·이스케이프 부재
+
+
+
+
