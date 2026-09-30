@@ -130,7 +130,9 @@ Locky study report
 7'
 ​```
 
-- 증거: <img width="80%" height="1800" alt="Screenshot 2026-09-29 165400" src="https://github.com/user-attachments/assets/7d3e1946-d7ef-4154-b3ed-a1505b0a324a" /> <img width="80%" height="1800" alt="Screenshot 2026-09-29 171049" src="https://github.com/user-attachments/assets/324a0f3a-1706-4488-a764-34e071b6e01d" />
+- 증거: <img width="80%" height="1800" alt="Screenshot 2026-09-29 165400" src="https://github.com/user-attachments/assets/7d3e1946-d7ef-4154-b3ed-a1505b0a324a" />
+
+<img width="80%" height="1800" alt="Screenshot 2026-09-29 171049" src="https://github.com/user-attachments/assets/324a0f3a-1706-4488-a764-34e071b6e01d" />
 
 
 - 영향 & 권고:
