@@ -189,7 +189,7 @@ Locky study report
 | 인증우회 | 안전 | - |
 | 업로드/설정 | 해당없음 / 정보노출 있음 | - |
 
-## 2. 취약 항목 상세<img width="2880" height="1800" alt="Screenshot 2026-09-29 152620" src="https://github.com/user-attachments/assets/99e71a43-4f6f-442b-b0fb-e2f6fba6d87e" />
+## 2. 취약 항목 상세<img width="2880" alt="Screenshot 2026-09-29 152620" src="https://github.com/user-attachments/assets/99e71a43-4f6f-442b-b0fb-e2f6fba6d87e" />
 
 
 ### [High] 게시판 검색 SQL Injection
